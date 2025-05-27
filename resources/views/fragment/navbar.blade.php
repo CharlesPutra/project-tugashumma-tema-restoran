@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <title>The Savory Spoon</title>
+    <link rel="web icon" href="{{ asset('logo.jpg') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
         .navbar {
@@ -72,10 +72,10 @@
                                 class="bi bi-house"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-list-ul"></i> Menu</a>
+                        <a class="nav-link" href="{{ route('menu.index') }}"><i class="bi bi-list-ul"></i> Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('category.index')}}"><i class="bi bi-tags"></i> Category</a>
+                        <a class="nav-link" href="{{ route('category.index') }}"><i class="bi bi-tags"></i> Category</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-people"></i> Customers</a>
@@ -87,8 +87,10 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" data-bs-theme="light"
                             aria-labelledby="ordersDropdown">
-                            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-plus"></i> Add Orders </a></li>
-                            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-check"></i> Orders Details</a></li>
+                            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-plus"></i> Add
+                                    Orders </a></li>
+                            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-check"></i>
+                                    Orders Details</a></li>
                         </ul>
                     </li>
                 </ul>

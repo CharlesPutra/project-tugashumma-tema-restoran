@@ -136,6 +136,6 @@
         </section>
     </main>
     <footer>
-        &copy; 2025 The Savory Spoon. All rights reserved.
+        &copy; 2025 Charles Agustian Putra. All rights reserved.
     </footer>
 @endsection

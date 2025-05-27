@@ -47,9 +47,9 @@
                     <tbody>
                         @forelse ($categorys as $index => $category)
                             <tr class="text-center">
-                                <td class="text-center">{{ $index + 1 }}</td>
+                                <td>{{ $index + 1 }}</td>
                                 <td>{{ $category->name_category }}</td>
-                                <td class="text-end">
+                                <td>
                                     <a href="{{ route('category.edit', $category->id) }}" class="btn btn-sm btn-warning">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
@@ -64,8 +64,10 @@
                                 </td>
                             </tr>
                         @empty
-                            <tr>
-                                <td colspan="3" class="text-center text-muted">Belum ada kategori.</td>
+                           <tr>
+                                <td colspan="7" class="text-center text-muted py-4">
+                                    Tidak ada kategori tersedia.
+                                </td>
                             </tr>
                         @endforelse
                     </tbody>

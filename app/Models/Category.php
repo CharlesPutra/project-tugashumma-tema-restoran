@@ -12,4 +12,9 @@ class Category extends Model
     protected $table = 'categories';
     protected $primaryKey = 'id';
     protected $fillable = ['name_category'];
+
+    public function menu()
+    {
+        return $this->hasMany(Menu::class,'id_category','id');
+    }
 }

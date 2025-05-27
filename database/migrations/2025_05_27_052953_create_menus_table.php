@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_category');
             $table->string('name_menu');
+            $table->string('image')->nullable(); // menyimpan nama/path file gambar
             $table->integer('harga');
             $table->text('deskripsi');
             $table->timestamps();
