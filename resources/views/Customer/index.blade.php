@@ -28,7 +28,9 @@
                     <div class="card shadow-sm border-0 h-100">
                         <div class="card-body text-center">
                             @php
-                                $imageUrl = "https://picsum.photos/seed/customer{$customer->id}/100";
+                            // ada dua resource foto random 
+                                $imageUrl = "https://picsum.photos/seed/animal{$customer->id}/100";
+                                // $imageUrl = "https://picsum.photos/seed/customer{$customer->id}/100";
                             @endphp
                             <img src="{{ $imageUrl }}" alt="Foto untuk {{ $customer->name_customer }}"
                                 class="rounded-circle mb-3" style="width: 80px; height: 80px; object-fit: cover;">
