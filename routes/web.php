@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\HomeController;
@@ -18,9 +19,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::get('/',[AuthController::class,'Showlogin'])->name('Showlogin');
 
 //route home
 Route::get('/home',[HomeController::class,'home'])->name('home');
