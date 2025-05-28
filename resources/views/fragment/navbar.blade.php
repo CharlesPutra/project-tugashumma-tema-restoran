@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Savory Spoon</title>
     <link rel="web icon" href="{{ asset('logo.jpg') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
         .navbar {
@@ -54,7 +55,7 @@
 
 <body>
     {{-- navbar --}}
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar sticky-top  navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="#">
                 <img src="{{ asset('logo.jpg') }}" alt="Logo" width="30" height="30"
@@ -88,10 +89,13 @@
                         <ul class="dropdown-menu dropdown-menu-end" data-bs-theme="light"
                             aria-labelledby="ordersDropdown">
                             <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-plus"></i> Add
-                                    Orders </a></li>
-                            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-check"></i>
-                                    Orders Details</a></li>
+                                    Table </a></li>
+                            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-plus"></i>
+                                    Add Menu</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-journal-check"></i> Details</a>
                     </li>
                 </ul>
             </div>
