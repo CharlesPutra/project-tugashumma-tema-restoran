@@ -79,7 +79,7 @@
                         <a class="nav-link" href="{{ route('category.index') }}"><i class="bi bi-tags"></i> Category</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-people"></i> Customers</a>
+                        <a class="nav-link" href="{{ route('customers.index') }}"><i class="bi bi-people"></i> Customers</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="ordersDropdown" role="button"
