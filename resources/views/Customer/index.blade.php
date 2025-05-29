@@ -28,7 +28,7 @@
                     <div class="card shadow-sm border-0 h-100">
                         <div class="card-body text-center">
                             @php
-                            // ada dua resource foto random 
+                                // ada dua resource foto random
                                 $imageUrl = "https://picsum.photos/seed/animal{$customer->id}/100";
                                 // $imageUrl = "https://picsum.photos/seed/customer{$customer->id}/100";
                             @endphp
@@ -44,6 +44,14 @@
                                     class="btn btn-sm btn-outline-warning">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
+                                <form action="{{ route('customers.call', $customer->id) }}" method="POST"
+                                    onsubmit="return confirm('Hubungi customer ini?')">
+                                    @csrf
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-telephone-forward"></i>
+                                    </button>
+                                </form>
+
                                 <form action="{{ route('customers.destroy', $customer->id) }}" method="POST"
                                     onsubmit="return confirm('Yakin ingin menghapus customer ini?')" class="d-inline">
                                     @csrf

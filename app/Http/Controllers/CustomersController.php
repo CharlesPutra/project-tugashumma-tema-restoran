@@ -77,4 +77,19 @@ class CustomersController extends Controller
         $hapus->delete();
         return redirect()->route('customers.index')->with('danger', 'Customer berhasil dihapus.');
     }
+
+    public function call($id)
+    {
+        $customer = Customers::findOrFail($id);
+
+        $customer->call_count += 1;
+        $customer->save();
+
+        if ($customer->call_count >= 2) {
+            $customer->delete();
+            return redirect()->route('customers.index')->with('success', 'Customer dihapus setelah ditelepon 2 kali.');
+        }
+
+        return redirect()->route('customers.index')->with('warning', 'Customer telah ditelepon. Total: ' . $customer->call_count . ' kali.');
+    }
 }
