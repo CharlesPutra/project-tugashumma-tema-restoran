@@ -1,6 +1,6 @@
 @extends('fragment.auth')
 
-@section('title', 'Masuk ke')
+@section('title', 'Daftar di')
 
 @section('auth')
     @if ($errors->any())
@@ -13,12 +13,18 @@
         </div>
     @endif
 
-    <form action="{{ route('login') }}" method="POST">
+    <form action="{{ route('register') }}" method="POST">
         @csrf
         <div class="mb-3 text-start">
             <label for="name" class="form-label">Username</label>
-            <input type="name" class="form-control" id="name" name="name" placeholder="Savory Spoon" required
+            <input type="text" class="form-control" id="name" name="name" placeholder="Savory Spoon" required
                 autofocus>
+        </div>
+
+        <div class="mb-3 text-start">
+            <label for="email" class="form-label">Alamat Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="contoh@restaurant.com"
+                required>
         </div>
 
         <div class="mb-3 text-start">
@@ -27,11 +33,11 @@
         </div>
 
         <div class="d-grid mb-3">
-            <button type="submit" class="btn btn-login">Masuk</button>
+            <button type="submit" class="btn btn-login">Daftar</button>
         </div>
 
         <p class="text-center text-muted">
-            Belum punya akun? <a href="{{ route('Showregis') }}">Daftar</a>
+            Sudah punya akun? <a href="{{ route('Showlogin') }}">Masuk</a>
         </p>
     </form>
 @endsection

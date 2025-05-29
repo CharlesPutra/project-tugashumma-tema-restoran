@@ -23,16 +23,29 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-
+//route view auth
 Route::get('/',[AuthController::class,'Showlogin'])->name('Showlogin');
+Route::get('/regis',[AuthController::class,'Showregis'])->name('Showregis');
 
-//route home
-Route::get('/home',[HomeController::class,'home'])->name('home');
+//route validate auth
+Route::post('/regis',[AuthController::class,'register'])->name('register');
+Route::post('/',[AuthController::class,'login'])->name('login');
 
 
-//route category
-Route::resource('/category',CategoryController::class);
+//route middleware 
+Route::middleware('auth')->group(function () {
 
-Route::resource('/menu',MenuController::class);
+    //route home
+    Route::get('/home',[HomeController::class,'home'])->name('home');
+    
+    
+    //route category
+    Route::resource('/category',CategoryController::class);
+    
+    Route::resource('/menu',MenuController::class);
+    
+    Route::resource('/customers',CustomersController::class);
 
-Route::resource('/customers',CustomersController::class);
+    //route logout
+    Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+});

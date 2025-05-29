@@ -24,18 +24,15 @@
         .navbar a:hover,
         .navbar-nav .nav-link:hover {
             color: #ffd8c2 !important;
-            /* Warna hover lebih terang */
         }
 
         .dropdown-menu {
             background-color: hsl(10, 56%, 51%) !important;
-            /* Warna navbar */
             color: #fff !important;
             border: none;
             --bs-dropdown-bg: hsl(10, 56%, 51%) !important;
             --bs-dropdown-link-color: #fff !important;
             --bs-dropdown-link-hover-bg: #ff7a5c !important;
-            /* sedikit lebih terang untuk hover */
             --bs-dropdown-link-hover-color: #fff !important;
             backdrop-filter: none !important;
         }
@@ -49,13 +46,34 @@
             background-color: #ff7a5c !important;
             color: #fff !important;
         }
-    </style>
+          /* Samakan lebar dropdown dengan tombol pemicunya */
+    .navbar .dropdown-menu {
+        min-width: 100% !important;
+    }
 
+    /* Pastikan tombol dropdown tidak punya padding aneh */
+    .navbar .dropdown-toggle {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    /* Atur lebar tombol user agar konsisten */
+    .navbar .nav-item.dropdown {
+        position: relative;
+        width: auto; /* atau gunakan fixed width jika ingin konsisten */
+    }
+
+    /* Optional: buat item dalam dropdown mengisi penuh */
+    .navbar .dropdown-menu .dropdown-item {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    </style>
 </head>
 
 <body>
-    {{-- navbar --}}
-    <nav class="navbar sticky-top  navbar-expand-lg">
+    {{-- Navbar --}}
+    <nav class="navbar sticky-top navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="#">
                 <img src="{{ asset('logo.jpg') }}" alt="Logo" width="30" height="30"
@@ -69,8 +87,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto gap-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i
-                                class="bi bi-house"></i> Home</a>
+                        <a class="nav-link active" href="{{ route('home') }}"><i class="bi bi-house"></i> Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('menu.index') }}"><i class="bi bi-list-ul"></i> Menu</a>
@@ -86,26 +103,54 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-cart"></i> Orders
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" data-bs-theme="light"
-                            aria-labelledby="ordersDropdown">
-                            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-plus"></i> Add
-                                    Table </a></li>
-                            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-plus"></i>
-                                    Add Menu</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="ordersDropdown">
+                            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-plus"></i> Add Table</a></li>
+                            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-plus"></i> Add Menu</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-journal-check"></i> Details</a>
                     </li>
+
+                    {{-- Authenticated User --}}
+                    @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item text-white">
+                                            <i class="bi bi-box-arrow-right"></i> Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endauth
+
+                    {{-- Guest (not logged in) --}}
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">
+                                <i class="bi bi-box-arrow-in-right"></i> Login
+                            </a>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </div>
     </nav>
 
-    {{-- navbar end --}}
+    {{-- Content --}}
     <main>
         @yield('navbar')
     </main>
+
+    {{-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
     </script>
