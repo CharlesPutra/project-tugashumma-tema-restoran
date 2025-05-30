@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Table;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TableController extends Controller
 {
@@ -68,7 +69,24 @@ class TableController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $request->validate([
+            'table_number' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'capacity' => 'required'
+        ]);
+        $table = Table::findOrFail($id);
+        if ($table->image && Storage::disk('public')->exists($table->image)) {
+            Storage::disk('public')->delete($table->image);
+        }
+         if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('image', 'public');
+            $table->image = $imagePath;
+        }
+        $table->update([
+            'table_number' => $request->table_number,
+            'capacity' => $request->capacity,
+        ]);
+         return redirect()->route('tables.index')->with('warning', 'Table berhasil diperbarui.');
     }
 
     /**
@@ -76,6 +94,11 @@ class TableController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         $table = Table::findOrFail($id);
+        if ($table->image && Storage::disk('public')->exists($table->image)) {
+            Storage::disk('public')->delete($table->image);
+        }
+        $table->delete();
+         return redirect()->route('tables.index')->with('danger', 'Table berhasil diperbarui.');
     }
 }
