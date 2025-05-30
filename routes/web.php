@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/customers', CustomersController::class);
     Route::post('/customers/{id}/call', [CustomersController::class, 'call'])->name('customers.call');
+
+    //route orders table 
+    Route::resource('/tables',TableController::class);
 
 
     //route logout
