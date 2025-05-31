@@ -105,7 +105,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="ordersDropdown">
                             <li><a class="dropdown-item text-white" href="{{ route('tables.index') }}"><i class="bi bi-cart-plus"></i> Add Table</a></li>
-                            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-cart-plus"></i> Add Menu</a></li>
+                            <li><a class="dropdown-item text-white" href="{{ route('orders.index') }}"><i class="bi bi-cart-plus"></i> Add Menu</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

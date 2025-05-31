@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,7 +50,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/customers/{id}/call', [CustomersController::class, 'call'])->name('customers.call');
 
     //route orders table 
-    Route::resource('/tables',TableController::class);
+    Route::resource('/tables', TableController::class);
+
+    //route order
+    Route::get('/orders/create', [OrdersController::class, 'create'])->name('orders.create');
+    Route::post('/orders', [OrdersController::class, 'store'])->name('orders.store');
+    Route::get('/orders', [OrdersController::class, 'index'])->name('orders.index');
+    Route::patch('/orders/{id}/status', [OrdersController::class, 'updateStatus'])->name('orders.updateStatus');
+
 
 
     //route logout
