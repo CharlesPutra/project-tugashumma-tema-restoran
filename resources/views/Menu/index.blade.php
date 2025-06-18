@@ -43,6 +43,7 @@
                     </div>
 
                     <div class="card-footer bg-white d-flex justify-content-between border-0">
+                        <a href="{{route('menu.show',$menu->id)}}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-chat-square-text"></i> Show</a>
                         <a href="{{ route('menu.edit', $menu->id) }}" class="btn btn-sm btn-outline-warning">
                             <i class="bi bi-pencil-square"></i> Edit
                         </a>
