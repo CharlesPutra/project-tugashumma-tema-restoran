@@ -108,9 +108,9 @@
                             <li><a class="dropdown-item text-white" href="{{ route('orders.index') }}"><i class="bi bi-cart-plus"></i> Add Menu</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-journal-check"></i> Details</a>
-                    </li>
+                    </li> --}}
 
                     {{-- Authenticated User --}}
                     @auth

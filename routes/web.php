@@ -26,12 +26,15 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //route view auth
-Route::get('/', [AuthController::class, 'Showlogin'])->name('Showlogin');
-Route::get('/regis', [AuthController::class, 'Showregis'])->name('Showregis');
+Route::middleware('guest')->group(function () {
 
-//route validate auth
-Route::post('/regis', [AuthController::class, 'register'])->name('register');
-Route::post('/', [AuthController::class, 'login'])->name('login');
+    Route::get('/', [AuthController::class, 'Showlogin'])->name('Showlogin');
+    Route::get('/regis', [AuthController::class, 'Showregis'])->name('Showregis');
+    
+    //route validate auth
+    Route::post('/regis', [AuthController::class, 'register'])->name('register');
+    Route::post('/', [AuthController::class, 'login'])->name('login');
+});
 
 
 //route middleware 

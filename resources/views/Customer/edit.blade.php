@@ -27,7 +27,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="no_phone" class="form-label">No Phone</label>
-                                <input type="text" name="no_phone" id="no_phone"
+                                <input type="number" name="no_phone" id="no_phone"
                                     class="form-control @error('no_phone') is-invalid @enderror"
                                     placeholder="Masukkan nama kategori" value="{{ $edit->no_phone }}">
 
