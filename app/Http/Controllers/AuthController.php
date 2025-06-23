@@ -39,7 +39,12 @@ class AuthController extends Controller
             //opsional redirect
             return redirect()->intended('home');
             // return redirect()->route('home');
+
+            //ketika password atau username salah
         }
+        return back()->withErrors([
+            'login' => 'Username atau Password salah'
+        ])->withInput();
     }
 
     public function logout(){

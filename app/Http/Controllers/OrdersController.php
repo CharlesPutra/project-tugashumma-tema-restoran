@@ -16,7 +16,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Orders::with(['customer', 'table', 'items.menu'])->latest()->get();
+        $orders = Orders::with(['customer', 'table', 'items.menu'])->latest()->paginate(5);
         return view('oreder.index', compact('orders'));
     }
 
@@ -41,7 +41,7 @@ class OrdersController extends Controller
             'customer_id' => 'nullable|exists:customers,id',
             'table_id' => 'nullable|exists:tables,id',
             'menus' => 'required|array',
-            'menus.*.quantity' => 'required|integer|min:1',
+            'menus.*.quantity' => 'nullable|integer|min:1',
         ]);
 
         $order = Orders::create([
@@ -53,6 +53,7 @@ class OrdersController extends Controller
         ]);
 
         $total = 0;
+        $validItems = 0;
 
         foreach ($request->menus as $menuId => $data) {
             if (isset($data['selected']) && $data['quantity'] > 0) {
@@ -61,20 +62,27 @@ class OrdersController extends Controller
                 $qty = $data['quantity'];
 
                 Orders_items::create([
-                    'order_id' => $order->id, // ini penting!
+                    'order_id' => $order->id,
                     'menu_id' => $menuId,
                     'price' => $price,
                     'quantity' => $qty,
                 ]);
 
                 $total += $price * $qty;
+                $validItems++;
             }
+        }
+
+        if ($validItems === 0) {
+            $order->delete(); // batalkan order kosong
+            return back()->withErrors(['menus' => 'Pilih minimal satu menu dengan jumlah lebih dari 0.'])->withInput();
         }
 
         $order->update(['total' => $total]);
 
         return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dibuat.');
     }
+
 
     /**
      * Display the specified resource.

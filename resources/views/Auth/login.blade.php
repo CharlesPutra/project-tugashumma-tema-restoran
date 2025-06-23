@@ -3,7 +3,7 @@
 @section('title', 'Masuk ke')
 
 @section('auth')
-    @if ($errors->any())
+    {{-- @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="mb-0">
                 @foreach ($errors->all() as $error)
@@ -11,7 +11,27 @@
                 @endforeach
             </ul>
         </div>
+    @endif --}}
+
+    {{-- alert pertama --}}
+    {{-- @if ($errors->has('login'))
+    <div class="alert alert-danger">
+        {{ $errors->first('login') }}
+    </div>
+@endif --}}
+
+    {{-- alert kedua  --}}
+
+    @if ($errors->has('login'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong> {{ $errors->first('login') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
+
+
+
+
 
     <form action="{{ route('login') }}" method="POST">
         @csrf

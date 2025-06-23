@@ -80,10 +80,11 @@
     <div class="login-card">
         <img src="{{ asset('logo.jpg') }}" alt="Food Icon">
         <h2>@yield('title', 'Masuk ke') <span style="color:#c8553d;">Savory Spoon</span></h2>
-            <main>
-                @yield('auth')
-            </main>
+        <main>
+            @yield('auth')
+        </main>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>
